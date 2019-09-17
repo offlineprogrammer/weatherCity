@@ -1,0 +1,7 @@
+{
+  "appId": "com.offlineProgrammer.weatherCity",
+  "appName": "weatherCity",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
