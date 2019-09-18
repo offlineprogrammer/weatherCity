@@ -10,7 +10,7 @@ export class StorageService {
 
   constructor() { }
 
-  async save(key: string, value: string): Promise < void > {
+  async save(key: string, value: any): Promise < void > {
     await Storage.set({
       key,
       value: JSON.stringify(value)
@@ -23,7 +23,7 @@ export class StorageService {
     });
   }
 
-  async get(key: string): Promise < void > {
+  async get(key: string): Promise < any > {
     await Storage.get({
       key
     });
