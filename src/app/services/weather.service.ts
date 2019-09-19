@@ -53,9 +53,17 @@ export class WeatherService {
     return this.processData(weatherData, unit);
   }
 
-  processData (data: WeatherResponse, unit: string) {}
+  processData (data: WeatherResponse, unit: string) {
+    data.main.temp = parseFloat(this.convertFromKelvin(data.main.temp, unit).toFixed(1));
+    data.main.temp_min = parseFloat(this.convertFromKelvin(data.main.temp_min, unit).toFixed(1));
+    data.main.temp_max = parseFloat(this.convertFromKelvin(data.main.temp_max, unit).toFixed(1));
+    return (this.data = data);
+  }
 
-  async getCurrentWeather() {}
+  async getCurrentWeather() {
+    const data = await this.load();
+    return data;
+  }
 
   convertFromKelvin(amount: number, unit: string): number {
     if (unit === 'celsius'){
