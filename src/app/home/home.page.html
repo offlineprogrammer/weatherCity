@@ -11,8 +11,8 @@
 
 <ion-content>
   <div class="weather-display">
-    <h1>23.4</h1>
-    <p>Sunny</p>
+    <h1>{{ weather.main.temp }}</h1>
+    <p>{{ weather.weather[0].description }}</p>
     <ion-card>
       <ion-card-header>
         <ion-card-subtitle>City</ion-card-subtitle>
