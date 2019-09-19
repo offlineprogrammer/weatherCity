@@ -11,22 +11,22 @@
 
 <ion-content>
   <div class="weather-display">
-    <h1>{{ weather.main.temp }}</h1>
+    <h1>{{ weather.main.temp }}&#176;</h1>
     <p>{{ weather.weather[0].description }}</p>
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>City</ion-card-subtitle>
+        <ion-card-subtitle>{{ weather.name }}</ion-card-subtitle>
         <ion-card-title>Overview</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-grid>
           <ion-row>
             <ion-col size='6'>Min</ion-col>
-            <ion-col size='6'>12</ion-col>
+            <ion-col size='6'>{{ weather.main.temp_min }}&#176;</ion-col>
           </ion-row>
           <ion-row>
               <ion-col size='6'>Max</ion-col>
-              <ion-col size='6'>26</ion-col>
+              <ion-col size='6'>{{ weather.main.temp_max }}&#176;</ion-col>
           </ion-row>
         </ion-grid>
 
