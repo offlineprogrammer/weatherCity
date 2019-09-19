@@ -10,6 +10,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresherHandler($event)" >
+    <ion-refresher-content> </ion-refresher-content>
+  </ion-refresher>
   <div class="weather-display">
     <h1>{{ weather.main.temp }}&#176;</h1>
     <p>{{ weather.weather[0].description }}</p>

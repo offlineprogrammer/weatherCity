@@ -16,7 +16,7 @@ export class HomePage implements OnInit {
 
   constructor(private settingsService: SettingsService, private weatherService: WeatherService) {
     this.weather = {
-      base:'',
+      base: '',
       clouds: null,
       cod: null,
       coord: null,
@@ -44,7 +44,7 @@ export class HomePage implements OnInit {
     };
   }
 
-  async ngOnInit(){
+  async ngOnInit() {
     const coordinates = await Geolocation.getCurrentPosition();
     console.log(coordinates);
     await this.settingsService.setCoords(coordinates.coords.latitude, coordinates.coords.longitude);
@@ -53,6 +53,18 @@ export class HomePage implements OnInit {
 
     } catch (err) {
       console.log (err);
+    }
+  }
+
+  async refresherHandler(event?) {
+    try {
+      this.weather = await this.weatherService.refreshWeather();
+    } catch (err) {
+      console.log(err);
+    }
+
+    if (event) {
+      event.target.complete();
     }
   }
 
