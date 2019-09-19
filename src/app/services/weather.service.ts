@@ -12,9 +12,46 @@ export class WeatherService {
 
   constructor(private settingsService: SettingsService) { }
 
-  async load() {}
+  async load() {
+    if (this.data){
+      return this.data;
+    } else {
+      return await this.refreshWeather();
+    }
+  }
 
-  async refreshWeather() {}
+  async refreshWeather() {
+    const [location, unit] = await Promise.all ([
+      this.settingsService.getLocation(),
+      this.settingsService.getTemperatureUnit()
+    ]);
+    let response: Response;
+    try {
+      if (location.useCoords) {
+        response = await fetch(`https://api.openweathermap.org/data/2.5/weather?
+        lat=${location.lat}&lon=${
+        location.lng
+        }&APPID=${this.apiKey}`);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+      } else {
+        response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?
+          q=${location.name}&APPID=${this.apiKey}`
+          );
+        if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+      }
+
+
+    } catch (err) {
+      return Promise.reject(err);
+    }
+    const weatherData = await response.json();
+    return this.processData(weatherData, unit);
+  }
 
   processData (data: WeatherResponse, unit: string) {}
 
