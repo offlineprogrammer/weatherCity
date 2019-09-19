@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SettingsService } from '../services/settings.service';
 import { Plugins } from '@capacitor/core';
 
 const { Geolocation } = Plugins;
@@ -9,11 +10,12 @@ const { Geolocation } = Plugins;
 })
 export class HomePage implements OnInit {
 
-  constructor() {}
+  constructor(private settingsService: SettingsService) {}
 
   async ngOnInit(){
     const coordinates = await Geolocation.getCurrentPosition();
     console.log(coordinates);
+    await this.settingsService.setCoords(coordinates.coords.latitude, coordinates.coords.longitude);
   }
 
 }
