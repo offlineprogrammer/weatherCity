@@ -13,6 +13,7 @@ const { Geolocation } = Plugins;
 export class HomePage implements OnInit {
 
   private weather: WeatherResponse;
+  private weatherIcon = 'thermometer';
 
   constructor(private settingsService: SettingsService, private weatherService: WeatherService) {
     this.weather = {
@@ -54,6 +55,8 @@ export class HomePage implements OnInit {
     } catch (err) {
       console.log (err);
     }
+
+    this.setWeatherIcon();
   }
 
   async refresherHandler(event?) {
@@ -63,8 +66,31 @@ export class HomePage implements OnInit {
       console.log(err);
     }
 
+    this.setWeatherIcon();
+
     if (event) {
       event.target.complete();
+    }
+  }
+
+  setWeatherIcon() {
+    let description = this.weather.weather[0].description;
+    if (description) {
+      if (description.includes('lightning') || description.includes('thunder')){
+        this.weatherIcon = 'thunderstorm';
+      } else if (description.includes('wind')){
+        this.weatherIcon = 'flag';
+      } else if (description.includes('rain') || description.includes('shower')) {
+        this.weatherIcon = 'rainy';
+      } else if (description.includes('snow') || description.includes('frost')) {
+        this.weatherIcon = 'snow';
+      } else if (description.includes('cloud')) {
+        this.weatherIcon = 'cloudy';
+      } else if (description.includes('sun') || description.includes('clear')) {
+        this.weatherIcon = 'sunny';
+      } else {
+        this.weatherIcon = 'thermometer';
+      }
     }
   }
 

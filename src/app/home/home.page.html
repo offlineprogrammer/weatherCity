@@ -14,6 +14,7 @@
     <ion-refresher-content> </ion-refresher-content>
   </ion-refresher>
   <div class="weather-display">
+    <ion-icon [name]='weatherIcon'></ion-icon>
     <h1>{{ weather.main.temp }}&#176;</h1>
     <p>{{ weather.weather[0].description }}</p>
     <ion-card>
