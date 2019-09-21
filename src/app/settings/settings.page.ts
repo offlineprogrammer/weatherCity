@@ -14,7 +14,22 @@ export class SettingsPage implements OnInit {
 
   constructor(private settingsService: SettingsService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const [location, unit] = await Promise.all([this.settingsService.getLocation(), this.settingsService.getTemperatureUnit()]);
+    this.useCurrentLocation = location.useCoords;
+    this.presetLocation = location.name;
+    this.unit = unit;
+  }
+
+  async handleToggleLocation(useLocation){
+    this.useCurrentLocation = useLocation;
+    await this.settingsService.setUseCoords(this.useCurrentLocation);
+  }
+
+  async handleLocationChange(event) {
+    console.log('handleLocationChange', event.detail.value);
+    this.presetLocation = event.detail.value;
+    await this.settingsService.setLocationName(this.presetLocation);
   }
 
 }

@@ -14,11 +14,11 @@
   <ion-radio-group>
     <ion-item>
       <ion-label>Use current location</ion-label>
-      <ion-radio slot='start' value='current' [checked]='useCurrentLocation'></ion-radio>
+      <ion-radio slot='start' value='current' [(ngModel)]='useCurrentLocation' (ionChange)='handleToggleLocation(true)'></ion-radio>
     </ion-item>
     <ion-item>
         <ion-label>Use preset location</ion-label>
-        <ion-radio slot='start' value='current' [checked]='useCurrentLocation'></ion-radio>
+        <ion-radio slot='start' value='preset' [(ngModel)]='!useCurrentLocation' (ionChange)='handleToggleLocation(false)'></ion-radio>
     </ion-item>
   </ion-radio-group>
 
@@ -26,7 +26,7 @@
      When using a preset location, the location listed below will be used.
   </small>
   <ion-item>
-    <ion-input type='text' [value]='presentLocation'></ion-input>
+    <ion-input type='text'  [(ngModel)]='presentLocation' (ionChange)='handleLocationChange($event)'></ion-input> 
   </ion-item>
   <small>
     Select the unit of measurement that you would like to use to display the weather
@@ -34,15 +34,15 @@
   <ion-radio-group>
     <ion-item>
       <ion-label>Celsius</ion-label>
-      <ion-radio slot='start' [checked]='unit==celsius'></ion-radio>
+      <ion-radio slot='start' [(ngModel)]='unit==celsius'></ion-radio>
     </ion-item>
     <ion-item>
       <ion-label>Fahrenheit</ion-label>
-      <ion-radio slot='start' [checked]='unit==fahrenheit'></ion-radio>
+      <ion-radio slot='start' [(ngModel)]='unit==fahrenheit'></ion-radio>
     </ion-item>
     <ion-item>
       <ion-label>Kelvin</ion-label>
-      <ion-radio slot='start' [checked]='unit==kelvin'></ion-radio>
+      <ion-radio slot='start' [(ngModel)]='unit==kelvin'></ion-radio>
     </ion-item>
   </ion-radio-group>
   <small [hidden]='unit!=kelvin'>Kelvin? Seriously?</small>
