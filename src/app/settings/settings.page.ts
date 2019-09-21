@@ -19,6 +19,7 @@ export class SettingsPage implements OnInit {
     this.useCurrentLocation = location.useCoords;
     this.presetLocation = location.name;
     this.unit = unit;
+    console.log(this.unit);
   }
 
   async handleToggleLocation(useLocation){
@@ -30,6 +31,11 @@ export class SettingsPage implements OnInit {
     console.log('handleLocationChange', event.detail.value);
     this.presetLocation = event.detail.value;
     await this.settingsService.setLocationName(this.presetLocation);
+  }
+
+  async handleUnitChange(unit) {
+    this.unit = unit;
+    await this.settingsService.setTemperatureUnit(unit);
   }
 
 }
