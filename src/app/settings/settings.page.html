@@ -14,11 +14,11 @@
   <ion-radio-group>
     <ion-item>
       <ion-label>Use current location</ion-label>
-      <ion-radio slot='start' value='current' [checked]='useCurrentLocation' (ionChange)='handleToggleLocation(true)'></ion-radio>
+      <ion-radio slot='start' value='current' [checked]='useCurrentLocation' (ionSelect)='handleToggleLocation(true)'></ion-radio>
     </ion-item>
     <ion-item>
         <ion-label>Use preset location</ion-label>
-        <ion-radio slot='start' value='preset' [checked]='!useCurrentLocation' (ionChange)='handleToggleLocation(false)'></ion-radio>
+        <ion-radio slot='start' value='preset' [checked]='!useCurrentLocation' (ionSelect)='handleToggleLocation(false)'></ion-radio>
     </ion-item>
   </ion-radio-group>
 
@@ -34,17 +34,17 @@
   <ion-radio-group>
     <ion-item>
       <ion-label>Celsius</ion-label>
-      <ion-radio slot='start' [checked]="unit==='celsius'" (ionChange)="handleUnitChange(celsius)"></ion-radio>
+      <ion-radio slot='start' [checked]="unit==='celsius'" (ionSelect)="handleUnitChange('celsius')"></ion-radio>
     </ion-item>
     <ion-item>
       <ion-label>Fahrenheit</ion-label>
-      <ion-radio slot='start' [checked]="unit==='fahrenheit'" (ionChange)="handleUnitChange(fahrenheit)"></ion-radio>
+      <ion-radio slot='start' [checked]="unit==='fahrenheit'" (ionSelect)="handleUnitChange('fahrenheit')"></ion-radio>
     </ion-item>
     <ion-item>
       <ion-label>Kelvin</ion-label>
-      <ion-radio slot='start' [checked]="unit==='kelvin'" (ionChange)="handleUnitChange(kelvin)"></ion-radio>
+      <ion-radio slot='start' [checked]="unit==='kelvin'" (ionSelect)="handleUnitChange('kelvin')"></ion-radio>
     </ion-item>
   </ion-radio-group>
-  <small [hidden]='unit!=kelvin'>Kelvin? Seriously?</small>
+  <small [hidden]="unit=='kelvin'">Kelvin? Seriously?</small>
 
 </ion-content>

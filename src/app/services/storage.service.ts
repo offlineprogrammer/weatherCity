@@ -24,9 +24,8 @@ export class StorageService {
   }
 
   async get(key: string): Promise < any > {
-    await Storage.get({
-      key
-    });
+    const item = await Storage.get({ key });
+    return JSON.parse(item.value);
   }
 
 

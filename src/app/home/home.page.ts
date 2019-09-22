@@ -56,6 +56,8 @@ export class HomePage implements OnInit {
       console.log (err);
     }
 
+    this.refresherHandler();
+
     this.setWeatherIcon();
   }
 
