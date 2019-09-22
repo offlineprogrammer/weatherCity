@@ -34,15 +34,15 @@
   <ion-radio-group>
     <ion-item>
       <ion-label>Celsius</ion-label>
-      <ion-radio slot='start' [checked]='unit===celsius' (ionChange)="handleUnitChange(celsius)"></ion-radio>
+      <ion-radio slot='start' [checked]="unit==='celsius'" (ionChange)="handleUnitChange(celsius)"></ion-radio>
     </ion-item>
     <ion-item>
       <ion-label>Fahrenheit</ion-label>
-      <ion-radio slot='start' [checked]='unit==fahrenheit' (ionChange)="handleUnitChange(fahrenheit)"></ion-radio>
+      <ion-radio slot='start' [checked]="unit==='fahrenheit'" (ionChange)="handleUnitChange(fahrenheit)"></ion-radio>
     </ion-item>
     <ion-item>
       <ion-label>Kelvin</ion-label>
-      <ion-radio slot='start' [checked]='unit==kelvin' (ionChange)="handleUnitChange(kelvin)"></ion-radio>
+      <ion-radio slot='start' [checked]="unit==='kelvin'" (ionChange)="handleUnitChange(kelvin)"></ion-radio>
     </ion-item>
   </ion-radio-group>
   <small [hidden]='unit!=kelvin'>Kelvin? Seriously?</small>

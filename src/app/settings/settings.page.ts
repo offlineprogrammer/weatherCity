@@ -19,6 +19,7 @@ export class SettingsPage implements OnInit {
     this.useCurrentLocation = location.useCoords;
     this.presetLocation = location.name;
     this.unit = unit;
+    console.log(this.unit === 'celsius');
     console.log(this.unit);
   }
 
