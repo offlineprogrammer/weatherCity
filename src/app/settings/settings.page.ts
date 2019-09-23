@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
+import { PlacesService } from '../services/places.service';
 
 @Component({
   selector: 'app-settings',
@@ -12,7 +13,7 @@ export class SettingsPage implements OnInit {
   private unit = 'celsius';
 
 
-  constructor(private settingsService: SettingsService) { }
+  constructor(private settingsService: SettingsService, private placesService: PlacesService) { }
 
   async ngOnInit() {
     const [location, unit] = await Promise.all([this.settingsService.getLocation(), this.settingsService.getTemperatureUnit()]);
@@ -35,6 +36,7 @@ export class SettingsPage implements OnInit {
     console.log('handleLocationChange', event.detail.value);
     this.presetLocation = event.detail.value;
     console.log(this.presetLocation);
+    await this.placesService.getPlaces(this.presetLocation);
     await this.settingsService.setLocationName(this.presetLocation);
   }
 
