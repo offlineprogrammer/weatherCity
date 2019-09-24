@@ -17,7 +17,7 @@ export class PlacesService {
     try {
       const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
-      response = await fetch(proxyurl+`https://maps.googleapis.com/maps/api/place/autocomplete/json?types=(cities)&input=${input}&key=${this.apiKey}`);
+      response = await fetch(proxyurl + `https://maps.googleapis.com/maps/api/place/autocomplete/json?types=(cities)&input=${input}&key=${this.apiKey}`);
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -32,7 +32,11 @@ export class PlacesService {
   }
 
   processData (data: PlacesResponse) {
-    return (this.data = data);
+
+    return data.predictions.filter(item => {
+      return item.description.toLowerCase();
+    });
+   // return (this.data = data);
   }
 
 }

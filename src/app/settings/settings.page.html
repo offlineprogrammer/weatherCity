@@ -26,6 +26,14 @@
      When using a preset location, the location listed below will be used.
   </small>
   <ion-item>
+    <ion-searchbar type="text" debounce="500" (ionInput)="getCities($event)"></ion-searchbar>
+  </ion-item>
+  <ion-list *ngIf="isCityAvailable">
+    <ion-item *ngFor="let item of predictionsItems" tappable (click)="selectCity(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+  <ion-item>
     <ion-input type='text'  [(ngModel)]='presetLocation' (ionChange)='handleLocationChange($event)'></ion-input> 
   </ion-item>
   <small>

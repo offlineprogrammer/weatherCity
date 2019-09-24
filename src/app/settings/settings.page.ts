@@ -11,6 +11,8 @@ export class SettingsPage implements OnInit {
   private useCurrentLocation = true;
   private presetLocation = 'SanDiego';
   private unit = 'celsius';
+  private isCityAvailable = false;
+  private predictionsItems: any;
 
 
   constructor(private settingsService: SettingsService, private placesService: PlacesService) { }
@@ -36,7 +38,6 @@ export class SettingsPage implements OnInit {
     console.log('handleLocationChange', event.detail.value);
     this.presetLocation = event.detail.value;
     console.log(this.presetLocation);
-    await this.placesService.getPlaces(this.presetLocation);
     await this.settingsService.setLocationName(this.presetLocation);
   }
 
@@ -44,6 +45,20 @@ export class SettingsPage implements OnInit {
     this.unit = unit;
     console.log(this.unit);
     await this.settingsService.setTemperatureUnit(this.unit);
+  }
+
+  async getCities(event) {
+    console.log('getCities', event.target.value);
+    const cities = await this.placesService.getPlaces(event.target.value);
+    console.log(cities);
+    this.isCityAvailable = true;
+    this.predictionsItems = cities;
+  }
+
+  selectCity(item) {
+    console.log(item);
+    this.isCityAvailable = false;
+    this.presetLocation = item.description;
   }
 
 }
