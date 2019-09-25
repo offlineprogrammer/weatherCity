@@ -8,12 +8,12 @@ import { PlacesService } from '../services/places.service';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  private useCurrentLocation = true;
-  private presetLocation = 'SanDiego';
-  private unit = 'celsius';
-  private isCityAvailable = false;
-  private predictionsItems: any;
-  private googleImg = 'assets/imgs/powered_by_google_on_white.png';
+  public useCurrentLocation = true;
+  public presetLocation = 'SanDiego';
+  public unit = 'celsius';
+  public isCityAvailable = false;
+  public predictionsItems: any;
+  public googleImg = 'assets/imgs/powered_by_google_on_white.png';
 
 
   constructor(private settingsService: SettingsService, private placesService: PlacesService) { }

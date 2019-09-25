@@ -12,8 +12,8 @@ const { Geolocation } = Plugins;
 })
 export class HomePage implements OnInit {
 
-  private weather: WeatherResponse;
-  private weatherIcon = 'thermometer';
+  public weather: WeatherResponse;
+  public weatherIcon = 'thermometer';
 
   constructor(private settingsService: SettingsService, private weatherService: WeatherService) {
     this.weather = {
