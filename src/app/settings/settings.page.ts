@@ -13,6 +13,7 @@ export class SettingsPage implements OnInit {
   private unit = 'celsius';
   private isCityAvailable = false;
   private predictionsItems: any;
+  private googleImg = 'assets/imgs/powered_by_google_on_white.png';
 
 
   constructor(private settingsService: SettingsService, private placesService: PlacesService) { }
