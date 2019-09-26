@@ -26,7 +26,7 @@ export class AppComponent {
 
   initializeApp() {
 
-    this.analyticsService.startTrackerWithId('UA-70035565-5');
+    this.analyticsService.startTrackerWithId('UA-70035565-6');
     this.router.events
     .subscribe(event => {
       //observe router and when it start navigation it will track the view
