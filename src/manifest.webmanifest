@@ -1,6 +1,7 @@
 {
-  "name": "app",
-  "short_name": "app",
+  "name": "Temperature.city",
+  "short_name": "temperaturecity",
+  "description": "Find the temperature of your favorite city",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
