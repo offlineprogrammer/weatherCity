@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
 import { PlacesService } from '../services/places.service';
+import { AnalyticsService } from '../services/analytics.service';
 
 @Component({
   selector: 'app-settings',
@@ -16,7 +17,7 @@ export class SettingsPage implements OnInit {
   public googleImg = 'assets/imgs/powered_by_google_on_white.png';
 
 
-  constructor(private settingsService: SettingsService, private placesService: PlacesService) { }
+  constructor(private settingsService: SettingsService, private placesService: PlacesService, private analytics: AnalyticsService) { }
 
   async ngOnInit() {
     const [location, unit] = await Promise.all([this.settingsService.getLocation(), this.settingsService.getTemperatureUnit()]);
@@ -39,12 +40,14 @@ export class SettingsPage implements OnInit {
     console.log('handleLocationChange', event.detail.value);
     this.presetLocation = event.detail.value;
     console.log(this.presetLocation);
+    this.analytics.trackEvent('User', 'Set Location', this.presetLocation);
     await this.settingsService.setLocationName(this.presetLocation);
   }
 
   async handleUnitChange(unit) {
     this.unit = unit;
     console.log(this.unit);
+    this.analytics.trackEvent('User', 'Unit Change', unit);
     await this.settingsService.setTemperatureUnit(this.unit);
   }
 
@@ -58,6 +61,7 @@ export class SettingsPage implements OnInit {
 
   selectCity(item) {
     console.log(item);
+    this.analytics.trackEvent('User', 'Select City', item.description);
     this.isCityAvailable = false;
     this.presetLocation = item.description;
   }
