@@ -63,7 +63,7 @@ export class SettingsPage implements OnInit {
     console.log(item);
     this.analytics.trackEvent('User', 'Select City', item.description);
     this.isCityAvailable = false;
-    this.presetLocation = item.description;
+    this.presetLocation = item.structured_formatting.main_text + ',' + item.structured_formatting.secondary_text;
   }
 
 }
